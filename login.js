@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // DOM Elements
     const usernameStep = document.getElementById("username-step")
     const passwordStep = document.getElementById("password-step")
     const createAccountStep = document.getElementById("create-account-step")
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnBackToLogin = document.getElementById("btn-back-to-login")
     const btnCreateAccount = document.getElementById("btn-create-account")
   
-    // Registration link is commented out in HTML, but we keep the reference in case it's needed later
     const createAccountLink = document.getElementById("create-account-link")
     const forgotPasswordLink = document.getElementById("forgot-password-link")
   
@@ -29,31 +27,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordError = document.getElementById("password-error")
     const createAccountError = document.getElementById("create-account-error")
   
-    // Check if already logged in
     checkAuthStatus()
   
-    // Input focus effects
     const inputs = document.querySelectorAll("input")
     inputs.forEach((input) => {
-      // Add focus class to parent when input is focused
       input.addEventListener("focus", function () {
         this.parentElement.classList.add("focused")
       })
   
-      // Remove focus class when input loses focus
       input.addEventListener("blur", function () {
         if (this.value === "") {
           this.parentElement.classList.remove("focused")
         }
       })
   
-      // Check if input has value on page load
       if (input.value !== "") {
         input.parentElement.classList.add("focused")
       }
     })
   
-    // Toggle password visibility
     togglePassword.addEventListener("click", function () {
       togglePasswordVisibility(passwordInput, this)
     })
@@ -74,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-    // Username next button click
     btnUsernameNext.addEventListener("click", () => {
       const username = usernameInput.value.trim()
   
@@ -83,15 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
   
-      // Check if username exists
       fetch(`/timecard/api/user/check?username=${encodeURIComponent(username)}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.exists) {
-            // Username exists, proceed to password step
             displayUsername.textContent = username
   
-            // Animate transition
             usernameStep.classList.add("slide-out-left")
   
             setTimeout(() => {
@@ -115,9 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
   
-    // Back to username button click
     btnBackToUsername.addEventListener("click", () => {
-      // Animate transition
       passwordStep.classList.add("slide-out-right")
   
       setTimeout(() => {
@@ -133,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300)
     })
   
-    // Login button click
     btnLogin.addEventListener("click", () => {
       const username = usernameInput.value.trim()
       const password = passwordInput.value
@@ -143,11 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
   
-      // Show loading state
       btnLogin.disabled = true
       btnLogin.innerHTML = '<span class="material-icons spinning">refresh</span> Signing in...'
   
-      // Attempt login
       fetch("/timecard/api/user/login", {
         method: "POST",
         headers: {
@@ -159,10 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            // Show success message
             showLoginMessage("Login successful! Redirecting...", true)
   
-            // Redirect after a short delay
             setTimeout(() => {
               window.location.href = data.redirect ? `/timecard${data.redirect}` : "/timecard/timecard.html"
             }, 1000)
@@ -180,12 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
   
-    // Create account link click - Commented out in HTML but kept in JS for future use
     if (createAccountLink) {
       createAccountLink.addEventListener("click", (e) => {
         e.preventDefault()
   
-        // Animate transition
         usernameStep.classList.add("slide-out-left")
   
         setTimeout(() => {
@@ -202,9 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     }
   
-    // Back to login button click
     btnBackToLogin.addEventListener("click", () => {
-      // Animate transition
       createAccountStep.classList.add("slide-out-right")
   
       setTimeout(() => {
@@ -220,13 +197,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300)
     })
   
-    // Create account button click
     btnCreateAccount.addEventListener("click", () => {
       const username = newUsernameInput.value.trim()
       const password = newPasswordInput.value
       const confirmPassword = confirmPasswordInput.value
   
-      // Validate inputs
       if (username === "") {
         createAccountError.textContent = "Please enter a username"
         return
@@ -242,11 +217,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
   
-      // Show loading state
       btnCreateAccount.disabled = true
       btnCreateAccount.innerHTML = '<span class="material-icons spinning">refresh</span> Creating account...'
   
-      // Check if username already exists
       fetch(`/timecard/api/user/check?username=${encodeURIComponent(username)}`)
         .then((response) => response.json())
         .then((data) => {
@@ -255,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
             btnCreateAccount.innerHTML = "Create account"
             createAccountError.textContent = "Username already exists"
           } else {
-            // Create new account
             fetch("/timecard/api/user/register", {
               method: "POST",
               headers: {
@@ -267,10 +239,8 @@ document.addEventListener("DOMContentLoaded", () => {
               .then((response) => response.json())
               .then((data) => {
                 if (data.success) {
-                  // Show success message
                   showRegistrationMessage("Account created successfully! Redirecting...", true)
   
-                  // Redirect after a short delay
                   setTimeout(() => {
                     window.location.href = data.redirect ? `/timecard${data.redirect}` : "/timecard/timecard.html"
                   }, 1000)
@@ -296,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
   
-    // Enter key functionality
     usernameInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         btnUsernameNext.click()
@@ -309,16 +278,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   
-    // Forgot password link click (placeholder functionality)
     forgotPasswordLink.addEventListener("click", (e) => {
       e.preventDefault()
       alert("Password reset functionality would be implemented here.")
     })
   
-    // Focus the username input on page load
     usernameInput.focus()
   
-    // Helper functions
     function checkAuthStatus() {
       const baseUrl = window.location.origin + "/timecard"
       console.log("Base URL:", baseUrl)
@@ -334,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((data) => {
           console.log("Auth data received:", data)
           if (data.authenticated) {
-            // Already logged in, redirect to timecard
             window.location.href = baseUrl + "/timecard.html"
           }
         })
@@ -351,10 +316,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <span>${message}</span>
       `
   
-      // Insert after the form
       passwordStep.appendChild(messageElement)
   
-      // Animate in
       setTimeout(() => {
         messageElement.classList.add("visible")
       }, 10)
@@ -368,10 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <span>${message}</span>
       `
   
-      // Insert after the form
       createAccountStep.appendChild(messageElement)
   
-      // Animate in
       setTimeout(() => {
         messageElement.classList.add("visible")
       }, 10)

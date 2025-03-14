@@ -11,7 +11,6 @@
 </head>
 <body>
 <div class="app-container">
-    <!-- App Bar -->
     <header class="app-bar">
         <button id="menu-button" class="menu-button" aria-label="Menu">
             <span class="material-icons">menu</span>
@@ -27,14 +26,12 @@
         </div>
     </header>
 
-    <!-- Navigation Drawer -->
     <div id="nav-drawer" class="nav-drawer">
         <div class="drawer-header">
             <div class="drawer-user-info">
                 <span class="material-icons user-avatar">account_circle</span>
                 <div class="user-details">
                     <span id="drawer-username">User</span>
-                    <!-- Removed email address as requested -->
                 </div>
             </div>
         </div>
@@ -55,10 +52,8 @@
         </nav>
     </div>
     
-    <!-- Backdrop for drawer -->
     <div id="backdrop" class="backdrop"></div>
 
-    <!-- User dropdown menu -->
     <div id="user-dropdown" class="user-dropdown hidden">
         <div class="dropdown-user-info">
             <span class="material-icons">account_circle</span>
@@ -71,9 +66,7 @@
         </button>
     </div>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <!-- Time Entry Page -->
         <section id="time-entry-page" class="page active">
             <div class="page-header">
                 <h2>Record Your Time</h2>
@@ -393,7 +386,6 @@
             </div>
         </section>
         
-        <!-- Time Overview Page -->
         <section id="time-overview-page" class="page">
             <div class="page-header">
                 <h2>Time Overview</h2>
@@ -442,7 +434,6 @@
                             </tr>
                         </thead>
                         <tbody id="timeRecordsBody">
-                            <!-- Records will be populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -451,7 +442,6 @@
     </main>
 </div>
 
-<!-- Snackbar for notifications -->
 <div id="snackbar" class="snackbar">
     <span id="snackbar-message"></span>
     <button id="snackbar-action" class="snackbar-action">Dismiss</button>
