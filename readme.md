@@ -167,22 +167,6 @@ Since the registration function is commented out by default, you need to perform
 - Make sure you are logged in
 - Check the console output for error messages
 
-## Project Structure
-
-time-tracker/
-├── css/                # CSS files
-│   ├── login.css       # Styling for login page
-│   └── timecard.css    # Styling for main application
-├── html/               # HTML files
-│   ├── login.html      # Login page
-│   └── timecard.html   # Main application
-├── js/                 # JavaScript files
-│   ├── login.js        # Login functionality
-│   └── timecard.js     # Main application logic
-├── data/               # Data storage (created automatically)
-├── server.js           # Server configuration and API endpoints
-└── README.md           # This file
-
 ## Usage
 
 ### Time Recording
