@@ -62,12 +62,12 @@ Time Tracker is a web application for recording and managing working hours. The 
 
 4. Clone the repository:
    
-   git clone https://github.com/GhostTz/timecard
+   `git clone https://github.com/GhostTz/timecard`
    
 
 5. Change to the project directory:
    
-   cd time-tracker
+   `cd time-tracker`
    
 
 #### Option B: Download as ZIP file
@@ -86,7 +86,7 @@ Time Tracker is a web application for recording and managing working hours. The 
 1. Make sure you are in the project directory
 2. Run the following command to install all needed packages:
    
-   npm install
+   `npm install`
    
 3. Wait until the installation is complete. This may take a few minutes.
 4. You should see a message that packages were installed, without error messages
@@ -95,7 +95,7 @@ Time Tracker is a web application for recording and managing working hours. The 
 
 1. Run the following command in the project directory:
    
-   node server.js
+   `node server.js`
    
 
 2. You should see a message: `Server running on port 3000`
