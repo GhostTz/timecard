@@ -186,13 +186,14 @@ Since the registration function is commented out by default, you need to perform
 ## Customization
 
 You can customize the color scheme by changing the CSS variables in the CSS files:
-
+```css
 :root {
   --primary-color: #5b21b6; /* Main color */
   --primary-light: #ddd6fe;
   --primary-dark: #4c1d95;
   /* more colors... */
 }
+```
 
 ## License and Credits
 
